@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="FontFile" path="res://fonts/Cairo.ttf" id="2"]
+[ext_resource type="Script" path="res://scripts/character_select.gd" id="1"]
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+[node name="Title" type="Label" parent="."]
+text = "SALAH BATTLE ROYALE - صلاح باتل رويال"
+theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("2")
+text_direction = 2
+[node name="CharLabel" type="Label" parent="."]
+text = "الشخصيات:"
+[node name="SalahButton" type="Button" parent="."]
+text = "SALAH - ولد"
+[node name="EvaButton" type="Button" parent="."]
+text = "EVA - بت"
+[node name="ShopLabel" type="Label" parent="."]
+text = "محل الملابس:"
+[node name="OutfitClassic" type="Button" parent="."]
+text = "Classic - كلاسيك"
+[node name="OutfitSport" type="Button" parent="."]
+text = "Sport - رياضي"
+[node name="OutfitRoyal" type="Button" parent="."]
+text = "Royal - ملكي"
+[node name="OutfitStreet" type="Button" parent="."]
+text = "Street - شوارع"
+[node name="MapLabel" type="Label" parent="."]
+text = "الخرايط:"
+[node name="MapDesert" type="Button" parent="."]
+text = "Desert - صحراء"
+[node name="MapCity" type="Button" parent="."]
+text = "City - مدينة"
+[node name="MapForest" type="Button" parent="."]
+text = "Forest - غابة"
+[node name="WeaponLabel" type="Label" parent="."]
+text = "الاسلحة:"
+[node name="W_Pistol" type="Button" parent="."]
+text = "Pistol - مسدس"
+[node name="W_Rifle" type="Button" parent="."]
+text = "Rifle - رشاش"
+[node name="W_Shotgun" type="Button" parent="."]
+text = "Shotgun - شوتقن"
+[node name="W_Sniper" type="Button" parent="."]
+text = "Sniper - قناص"
+[node name="Info" type="Label" parent="."]
+text = "اختيارك: SALAH | Classic | Desert | Rifle"
+[node name="PlayButton" type="Button" parent="."]
+text = "PLAY - العب"

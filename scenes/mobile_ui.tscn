@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/custom_hud.gd" id="1"]
+[node name="MobileUI" type="CanvasLayer"]
+script = ExtResource("1")
+[node name="JoystickBase" type="ColorRect" parent="."]
+offset_left = 40.0
+offset_top = 550.0
+offset_right = 200.0
+offset_bottom = 710.0
+color = Color(1, 1, 1, 0.15)
+[node name="Knob" type="ColorRect" parent="JoystickBase"]
+offset_left = 55.0
+offset_top = 55.0
+offset_right = 105.0
+offset_bottom = 105.0
+color = Color(1, 1, 1, 0.5)
+[node name="FireButton" type="Button" parent="."]
+offset_left = 1100.0
+offset_top = 550.0
+offset_right = 1230.0
+offset_bottom = 680.0
+text = "FIRE"
+[node name="JumpButton" type="Button" parent="."]
+offset_left = 1000.0
+offset_top = 600.0
+offset_right = 1070.0
+offset_bottom = 670.0
+text = "JUMP"
+[node name="CrouchButton" type="Button" parent="."]
+offset_left = 1120.0
+offset_top = 480.0
+offset_right = 1180.0
+offset_bottom = 540.0
+text = "DOWN"
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 500.0
+offset_top = 680.0
+offset_right = 780.0
+offset_bottom = 700.0
+value = 100.0
+[node name="SafeZoneLabel" type="Label" parent="."]
+offset_left = 500.0
+offset_top = 20.0
+offset_right = 780.0
+offset_bottom = 50.0
+text = "Safe Zone will shrink in 00:32"
+horizontal_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="."]
+offset_left = 1220.0
+offset_top = 20.0
+offset_right = 1270.0
+offset_bottom = 70.0
+text = "⚙️"
+[node name="SaveButton" type="Button" parent="."]
+offset_left = 500.0
+offset_top = 600.0
+offset_right = 650.0
+offset_bottom = 650.0
+text = "SAVE ✓"
+visible = false
+[node name="ResetButton" type="Button" parent="."]
+offset_left = 670.0
+offset_top = 600.0
+offset_right = 820.0
+offset_bottom = 650.0
+text = "RESET"
+visible = false
+[node name="SizeSlider" type="HSlider" parent="."]
+offset_left = 500.0
+offset_top = 660.0
+offset_right = 820.0
+offset_bottom = 680.0
+min_value = 0.5
+max_value = 2.0
+value = 1.0
+visible = false
+[node name="EditLabel" type="Label" parent="."]
+offset_left = 400.0
+offset_top = 100.0
+offset_right = 900.0
+offset_bottom = 130.0
+text = "وضع التعديل"
+visible = false
+horizontal_alignment = 1

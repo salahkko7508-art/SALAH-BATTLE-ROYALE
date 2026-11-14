@@ -1,0 +1,11 @@
+config_version=5
+
+[application]
+config/name="SALAH BATTLE ROYALE"
+run/main_scene="res://scenes/main.tscn"
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+
+[autoload]
+Global="*res://scripts/global.gd"
