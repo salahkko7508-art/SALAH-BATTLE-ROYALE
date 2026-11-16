@@ -52,6 +52,13 @@ offset_top = 20.0
 offset_right = 1270.0
 offset_bottom = 70.0
 text = "⚙️"
+[node name="EditHUDButton" type="Button" parent="."]
+offset_left = 1040.0
+offset_top = 20.0
+offset_right = 1190.0
+offset_bottom = 70.0
+text = "EDIT HUD"
+
 [node name="SaveButton" type="Button" parent="."]
 offset_left = 500.0
 offset_top = 600.0
@@ -83,3 +90,17 @@ offset_bottom = 130.0
 text = "وضع التعديل"
 visible = false
 horizontal_alignment = 1
+
+[node name="AimButton" type="Button" parent="."]
+offset_left = 960.0
+offset_top = 500.0
+offset_right = 1040.0
+offset_bottom = 570.0
+text = "AIM"
+
+[node name="ProneButton" type="Button" parent="."]
+offset_left = 1120.0
+offset_top = 400.0
+offset_right = 1190.0
+offset_bottom = 470.0
+text = "PRONE"

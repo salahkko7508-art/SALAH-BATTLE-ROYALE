@@ -2,10 +2,28 @@ config_version=5
 
 [application]
 config/name="SALAH BATTLE ROYALE"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/intro.tscn"
 
 [rendering]
 renderer/rendering_method="gl_compatibility"
 
 [autoload]
+FirebaseClient="*res://scripts/firebase_client.gd"
+Auth="*res://scripts/auth.gd"
 Global="*res://scripts/global.gd"
+SaveSystem="*res://scripts/save_system.gd"
+Prices="*res://scripts/prices.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/handheld/orientation=4
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GodotGoogleSignIn/plugin.cfg")
