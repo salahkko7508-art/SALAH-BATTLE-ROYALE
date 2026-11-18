@@ -1,6 +1,17 @@
 extends Control
 
 func _ready():
+    # Back to Lobby button - created in code
+    var back = Button.new()
+    back.text = "⬅ BACK"
+    back.name = "BackToLobby"
+    back.position = Vector2(16, 16)
+    back.size = Vector2(140, 50)
+    back.pressed.connect(func():
+        SaveSystem.save_game()
+        get_tree().change_scene_to_file("res://scenes/lobby.tscn")
+    )
+    add_child(back)
     $SalahButton.pressed.connect(func(): Global.selected_character = "salah"; update_info())
     $EvaButton.pressed.connect(func(): Global.selected_character = "eva"; update_info())
 

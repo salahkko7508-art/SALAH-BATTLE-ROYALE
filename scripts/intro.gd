@@ -30,7 +30,7 @@ func build_intro():
 	add_child(background_image)
 
 	var bg = ColorRect.new()
-	bg.color = Color(0.008, 0.008, 0.025, 0.48)
+	bg.color = Color(0.008, 0.008, 0.025, 0.20)
 	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(bg)
@@ -56,13 +56,15 @@ func build_intro():
 	var center = VBoxContainer.new()
 	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	center.alignment = BoxContainer.ALIGNMENT_CENTER
-	center.add_theme_constant_override("separation", 22)
-	center.offset_left = 25
+	center.add_theme_constant_override("separation", 8)
+	center.offset_left = 20
+	center.offset_top = 10
+	center.offset_bottom = -10
 	center.offset_right = -25
 	add_child(center)
 
 	var top_space = Control.new()
-	top_space.custom_minimum_size.y = 35
+	top_space.custom_minimum_size.y = 8
 	center.add_child(top_space)
 
 	title_label = Label.new()
@@ -101,14 +103,14 @@ func build_intro():
 
 	email_input = LineEdit.new()
 	email_input.placeholder_text = "البريد الإلكتروني"
-	email_input.custom_minimum_size = Vector2(280, 48)
+	email_input.custom_minimum_size = Vector2(280, 44)
 	email_input.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	center.add_child(email_input)
 
 	password_input = LineEdit.new()
 	password_input.placeholder_text = "كلمة المرور"
 	password_input.secret = true
-	password_input.custom_minimum_size = Vector2(280, 48)
+	password_input.custom_minimum_size = Vector2(280, 44)
 	password_input.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	center.add_child(password_input)
 
@@ -121,25 +123,40 @@ func build_intro():
 
 	signup_button = Button.new()
 	signup_button.text = "إنشاء حساب جديد"
-	signup_button.custom_minimum_size = Vector2(280, 50)
+	var sstyle = StyleBoxFlat.new()
+	sstyle.bg_color = Color(0.55, 0.15, 0.85, 1)
+	sstyle.set_corner_radius_all(12)
+	signup_button.add_theme_stylebox_override("normal", sstyle)
+	signup_button.add_theme_color_override("font_color", Color(1, 1, 1, 1))
+	signup_button.custom_minimum_size = Vector2(280, 44)
 	signup_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	signup_button.pressed.connect(_on_signup_pressed)
 	center.add_child(signup_button)
 
 	signin_button = Button.new()
 	signin_button.text = "تسجيل الدخول"
-	signin_button.custom_minimum_size = Vector2(280, 50)
+	var istyle = StyleBoxFlat.new()
+	istyle.bg_color = Color(1.0, 0.75, 0.0, 1)
+	istyle.set_corner_radius_all(12)
+	signin_button.add_theme_stylebox_override("normal", istyle)
+	signin_button.add_theme_color_override("font_color", Color(0, 0, 0, 1))
+	signin_button.custom_minimum_size = Vector2(280, 44)
 	signin_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	signin_button.pressed.connect(_on_signin_pressed)
 	center.add_child(signin_button)
 
 	var spacer = Control.new()
-	spacer.custom_minimum_size.y = 35
+	spacer.custom_minimum_size.y = 8
 	center.add_child(spacer)
 
 	google_button = Button.new()
-	google_button.text = "CONTINUE WITH GOOGLE"
-	google_button.custom_minimum_size = Vector2(280, 60)
+	google_button.text = "G  CONTINUE WITH GOOGLE"
+	var gstyle = StyleBoxFlat.new()
+	gstyle.bg_color = Color(1, 1, 1, 1)
+	gstyle.set_corner_radius_all(12)
+	google_button.add_theme_stylebox_override("normal", gstyle)
+	google_button.add_theme_color_override("font_color", Color(0, 0, 0, 1))
+	google_button.custom_minimum_size = Vector2(280, 44)
 	google_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	google_button.add_theme_font_size_override("font_size", 19)
 	google_button.pressed.connect(_on_google_pressed)
@@ -147,7 +164,7 @@ func build_intro():
 
 	guest_button = Button.new()
 	guest_button.text = "الدخول كضيف"
-	guest_button.custom_minimum_size = Vector2(280, 60)
+	guest_button.custom_minimum_size = Vector2(280, 44)
 	guest_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	guest_button.add_theme_font_size_override("font_size", 22)
 
@@ -189,9 +206,12 @@ func _process(delta):
 			particle.position.x = randf_range(0, get_viewport_rect().size.x)
 
 func _on_google_pressed():
-	status_label.text = "Google غير مربوط بعد"
-	_set_loading(false)
-	print("GOOGLE LOGIN NOT CONNECTED YET")
+	print("GOOGLE BUTTON PRESSED")
+	status_label.text = "جاري فتح قوقل في المتصفح..."
+	_set_loading(true)
+	google_button.disabled = false
+	FirebaseClient.start_google_sign_in()
+	print("GOOGLE LOGIN STARTED")
 
 
 func _on_guest_pressed():
@@ -245,6 +265,24 @@ func _on_signin_pressed():
 	_set_loading(true)
 	FirebaseClient.sign_in(email, password)
 
+
+func _show_only_signin_button(msg: String):
+		_set_loading(false)
+		status_label.text = msg
+		title_label.text = "SALAH BATTLE"
+		subtitle_label.text = "حسابك جاهز"
+		# نخفي كل شي
+		if signup_button: signup_button.visible = false
+		if google_button: google_button.visible = false
+		if guest_button: guest_button.visible = false
+		email_input.visible = false
+		password_input.visible = false
+		# نظهر زر الدخول بس كبير في النص
+		signin_button.visible = true
+		signin_button.disabled = false
+		signin_button.text = "تسجيل الدخول"
+		signin_button.custom_minimum_size = Vector2(320, 60)
+		print("SHOW ONLY SIGNIN BUTTON")
 
 func _on_firebase_auth_completed(success: bool, data: Dictionary):
 	if success:

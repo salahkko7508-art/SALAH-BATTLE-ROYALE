@@ -16,7 +16,6 @@ func _ready():
 	circle_mesh = MeshInstance3D.new()
 	var circle = CylinderMesh.new()
 	circle.top_radius = 1.0
-	circle.bottom_radius = 1.0
 	circle.height = 0.1
 	circle.radial_segments = 64
 	circle_mesh.mesh = circle
@@ -28,7 +27,6 @@ func _ready():
 	wall_mesh = MeshInstance3D.new()
 	var wall_cyl = CylinderMesh.new()
 	wall_cyl.top_radius = 1.0
-	wall_cyl.bottom_radius = 1.0
 	wall_cyl.height = 50.0
 	wall_cyl.radial_segments = 64
 	wall_mesh.mesh = wall_cyl

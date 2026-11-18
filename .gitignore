@@ -1,0 +1,13 @@
+.godot/
+exported/
+android/
+*.apk
+*.apk.idsig
+*.idsig
+*.log
+*.bak
+*.swp
+backups_no_bot/
+playit
+.godot/*
+*.before_systems

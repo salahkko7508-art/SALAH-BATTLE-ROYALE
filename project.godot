@@ -8,6 +8,7 @@ run/main_scene="res://scenes/intro.tscn"
 renderer/rendering_method="gl_compatibility"
 
 [autoload]
+Network="*res://scripts/network.gd"
 FirebaseClient="*res://scripts/firebase_client.gd"
 Auth="*res://scripts/auth.gd"
 Global="*res://scripts/global.gd"
@@ -16,11 +17,11 @@ Prices="*res://scripts/prices.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width = 1280
+window/size/viewport_height = 720
 window/size/window_width_override=1280
 window/size/window_height_override=720
-window/handheld/orientation=4
+window/handheld/orientation = 0
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

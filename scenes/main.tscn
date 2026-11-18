@@ -64,7 +64,7 @@ script = ExtResource("8")
 [node name="Network" type="Node" parent="."]
 script = ExtResource("9")
 
-[node name="Lobby" type="CanvasLayer" parent="."]
+[node name="Lobby" type="Control" parent="."]
 script = ExtResource("10")
 
 [node name="MobileUI" parent="." instance=ExtResource("20")]

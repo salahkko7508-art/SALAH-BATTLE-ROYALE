@@ -3,6 +3,7 @@ extends Node
 var player_id = ""
 var player_name = "ضيف"
 var player_email = ""
+var player_avatar_url = ""
 var firebase_uid = ""
 var is_logged_in = false
 var total_players = 0
@@ -63,13 +64,14 @@ func login_as_owner(email, name):
     print("رقمك: ", player_id)
     return player_id
 
-func login_with_google(email, name):
+func login_with_google(email, name, avatar_url: String = ""):
     if email == "salah@gmail.com":
         return login_as_owner(email, name)
 
     player_email = email
     player_name = name
     is_logged_in = true
+    player_avatar_url = avatar_url
 
     if player_id == "":
         generate_player_id()
@@ -87,11 +89,18 @@ func login_with_firebase(data: Dictionary) -> bool:
         return false
 
     if not firebase_uid.is_empty() and firebase_uid != received_uid:
-        print("FIREBASE LOGIN BLOCKED: DIFFERENT ACCOUNT ON THIS DEVICE")
-        return false
+        print("FIREBASE SWITCHING ACCOUNT")
+        player_id = ""
+        player_name = "ضيف"
+        player_level = 1
+        player_xp = 0
+        name_change_used = false
 
     firebase_uid = received_uid
     player_email = received_email
+    var disp = str(data.get("displayName", "")).strip_edges()
+    if not disp.is_empty():
+        player_name = disp
     is_owner = false
 
     if player_id.is_empty():
@@ -173,6 +182,20 @@ func load_profile():
     name_change_used = config.get_value("player", "name_change_used", false)
     is_owner = config.get_value("player", "is_owner", false)
     is_logged_in = player_id != ""
+
+func logout():
+    player_id = ""
+    player_name = "ضيف"
+    player_email = ""
+    firebase_uid = ""
+    player_avatar_url = ""
+    is_logged_in = false
+    is_owner = false
+    player_level = 1
+    player_xp = 0
+    save_profile()
+    print("LOGGED OUT")
+    return true
 
 func get_my_id():
     return player_id
